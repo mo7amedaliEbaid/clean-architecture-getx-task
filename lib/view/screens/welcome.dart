@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_test_task/core/constants/assets.dart';
-import 'package:mobile_test_task/core/constants/colors.dart';
-import 'package:mobile_test_task/core/constants/strings.dart';
+import 'package:get/get.dart';
+import 'package:mobile_test_task/core/core.dart';
+
+import 'package:mobile_test_task/view/widgets.dart';
 
 import '../../configs/configs.dart';
 
@@ -16,17 +17,32 @@ class WelcomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Space.yf(4),
-          Center(
-            child: Image.asset(
-              AppAssets.logo,
-              height: AppDimensions.normalize(50),
-              color: AppColors.darkPurple,
-            ),
-            
-          ),
+          logoImage(),
           Space.y1!,
-          Text(AppStrings.welcome,style: AppText.h1b,),
-          Space.yf(4),
+          Text(
+            AppStrings.welcome,
+            style: AppText.h1b,
+          ),
+          Space.yf(12),
+          customElevatedButton(
+              width: AppDimensions.normalize(110),
+              height: AppDimensions.normalize(20),
+              color: AppColors.darkPurple,
+              borderRadius: AppDimensions.normalize(4),
+              text: AppStrings.login,
+              textStyle: AppText.h2b!.copyWith(color: Colors.white),
+              onPressed: () {}),
+          Space.yf(),
+          customOutlinedButton(
+              width: AppDimensions.normalize(110),
+              height: AppDimensions.normalize(20),
+              borderColor: AppColors.darkPurple,
+              borderRadius: AppDimensions.normalize(4),
+              text: AppStrings.register,
+              textStyle: AppText.h2b!,
+              onPressed: () {
+                Get.toNamed(AppRoutes.register);
+              })
         ],
       ),
     );

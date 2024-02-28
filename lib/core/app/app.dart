@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_test_task/core/constants/strings.dart';
+import 'package:mobile_test_task/core/core.dart';
 
-import '../../controllers/user.dart';
-import '../../view/screens/register.dart';
-import '../../view/screens/welcome.dart';
+
+import '../../view/screens.dart';
 
 class MyApp extends StatelessWidget {
-  final UserController _userController = UserController();
+  //final UserController _userController = UserController();
 
   MyApp({super.key});
 
@@ -21,11 +20,12 @@ class MyApp extends StatelessWidget {
       home: const WelcomeScreen(),
       getPages: [
         GetPage(
-          name: '/register',
-          page: () => RegisterPage(),
-          binding: BindingsBuilder(() {
-            Get.lazyPut<UserController>(() => _userController);
-          }),
+          name: AppRoutes.register,
+          page: () => const RegisterScreen(),
+          /*binding: BindingsBuilder(() {
+            Get.lazyPut<UserController>(() => _userController);*/
+         // }
+        //  ),
         ),
       ],
     );

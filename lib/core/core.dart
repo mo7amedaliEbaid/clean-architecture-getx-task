@@ -8,3 +8,9 @@ export 'network/dio_helper.dart';
 export 'constants/strings.dart';
 export 'constants/assets.dart';
 export 'constants/colors.dart';
+//routes
+export 'routes/routes.dart';
+//validators
+export 'validators/validators.dart';
+//injector
+export 'di/injector.dart';

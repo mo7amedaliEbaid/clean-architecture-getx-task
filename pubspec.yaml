@@ -40,6 +40,12 @@ dependencies:
   equatable:
   go_router:
   get:
+  hive:
+  hive_flutter:
+  logger:
+  get_it:
+  awesome_dialog:
+  country_code_picker:
 
 dev_dependencies:
   flutter_test:

@@ -30,6 +30,7 @@ class AppText {
     const b = FontWeight.bold;
     const baseStyle = TextStyle(
         fontFamily: AppStrings.fontFamily,
+
         wordSpacing: 1,
         color: Color(0xff6e317c));
 
