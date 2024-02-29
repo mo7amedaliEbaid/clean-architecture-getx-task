@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_test_task/bindings/bindings.dart';
 import 'package:mobile_test_task/core/core.dart';
-import 'package:mobile_test_task/view/screens/home.dart';
 
 import '../../view/screens.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("Token = ${injector<HiveHelper>().getToken()}");
     return GetMaterialApp(
       title: 'task',
       debugShowCheckedModeBanner: false,
@@ -25,7 +27,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: AppRoutes.home,
           page: () => const HomeScreen(),
-         // binding: RegisterBinding(),
+          // binding: RegisterBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.login,
+          page: () => const LoginScreen(),
+          binding: LoginBinding(),
         ),
       ],
     );

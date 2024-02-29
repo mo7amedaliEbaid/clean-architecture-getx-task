@@ -1,15 +1,14 @@
-import '../../core/helpers/failure_helper.dart';
-import '../../core/network/failures.dart';
-import '../../core/network/network_info.dart';
-import '../../models/user.dart';
-import '../data_sources/register.dart';
+
+import '../../core/core.dart';
+import '../../models/models.dart';
+import '../data.dart';
 import 'package:dartz/dartz.dart';
 
-class AuthRepo {
+class RegisterRepo {
   NetworkInfo networkInfo;
-  AuthDataSource authDataSource;
+  RegisterDataSource registerDataSource;
 
-  AuthRepo({required this.networkInfo, required this.authDataSource});
+  RegisterRepo({required this.networkInfo, required this.registerDataSource});
 
   Future<Either<Failure, UserModel?>> register({
     required String password,
@@ -21,7 +20,7 @@ class AuthRepo {
   }) {
     return FailureHelper.instance(
       method: () async {
-        return await authDataSource.register(
+        return await registerDataSource.register(
           password: password,
           phone: phone,
           name: name,

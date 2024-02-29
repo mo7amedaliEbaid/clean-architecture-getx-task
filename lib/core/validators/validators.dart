@@ -49,6 +49,13 @@ class Validators {
     return null;
   }
 
+  String? validateNullOrEmpty(String value, String fieldName) {
+    if (value.trim().isEmpty) {
+      return '$fieldName is required';
+    }
+    return null; // Validation passed
+  }
+
   /*String? validateFullName(String? value) {
     if (value == null || value.isEmpty) return 'First name is required';
     if (value.length < 2) {

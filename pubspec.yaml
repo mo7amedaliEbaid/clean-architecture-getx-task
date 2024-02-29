@@ -37,8 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz:
   dio:
-  equatable:
-  go_router:
+#  equatable:
+ # go_router:
   get:
   hive:
   hive_flutter:

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_test_task/core/constants/colors.dart';
 
 Widget customUnderLinedText(
-    TextStyle? style,
-    String text,
-    bool isFromAuth,
-    ) {
+  TextStyle? style,
+  String text,
+) {
   return Text(
     text,
     style: style?.copyWith(
-      shadows: [const Shadow(color: Colors.black, offset: Offset(0, -4))],
+      shadows: [
+        Shadow(color: AppColors.darkPurple, offset: const Offset(0, -1))
+      ],
       color: Colors.transparent,
-      decorationColor: Colors.black,
+      decorationColor: AppColors.darkPurple,
       letterSpacing: .5,
       decoration: TextDecoration.underline,
       decorationThickness: 3.5,
     ),
-    textAlign: isFromAuth ? TextAlign.end : null,
   );
 }

@@ -5,28 +5,20 @@ import '../core/core.dart';
 import '../data/data.dart';
 import 'package:flutter/material.dart';
 
-class RegisterController extends GetxController {
+class LoginController extends GetxController {
   final RxBool isLoading = false.obs;
 
-  Future<void> register({
-    required String name,
-    required String phone,
+  Future<void> login({
     required String email,
     required String password,
-    required String passwordConfirmation,
-    required String countryCode,
     required BuildContext context,
   }) async {
     isLoading.toggle();
 
     try {
-      final result = await injector<RegisterRepo>().register(
+      final result = await injector<LoginRepo>().login(
         password: password,
-        phone: phone,
         email: email,
-        name: name,
-        passwordConfirmation: passwordConfirmation,
-        countryCode: countryCode,
       );
 
       result.fold(
@@ -36,21 +28,21 @@ class RegisterController extends GetxController {
         },
         (r) async {
           if (r != null) {
-          //  await injector<HiveHelper>().setToken(r.token!);
+            await injector<HiveHelper>().setToken(r.token!);
 
-          //  await injector<HiveHelper>().setUserModel(r);
-            Get.snackbar("Successful Registration", "Congratulations",
+            await injector<HiveHelper>().setUserModel(r);
+            Get.snackbar("Successful Logging In", "Congratulations",
                 backgroundColor: Colors.green,
                 colorText: Colors.white,
                 duration: const Duration(seconds: 4));
-            Get.toNamed(AppRoutes.login);
+            Get.toNamed(AppRoutes.home);
 
             log(r.toString());
           }
         },
       );
     } catch (e) {
-      Get.snackbar('Error', 'Error during registration: $e');
+      Get.snackbar('Error', 'Error during logging in: $e');
     } finally {
       isLoading.toggle();
     }

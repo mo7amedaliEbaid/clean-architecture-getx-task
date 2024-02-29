@@ -31,7 +31,9 @@ class WelcomeScreen extends StatelessWidget {
               borderRadius: AppDimensions.normalize(4),
               text: AppStrings.login,
               textStyle: AppText.h2b!.copyWith(color: Colors.white),
-              onPressed: () {}),
+              onPressed: () {
+                Get.toNamed(AppRoutes.login);
+              }),
           Space.yf(),
           customOutlinedButton(
               width: AppDimensions.normalize(110),
@@ -42,7 +44,23 @@ class WelcomeScreen extends StatelessWidget {
               textStyle: AppText.h2b!,
               onPressed: () {
                 Get.toNamed(AppRoutes.register);
-              })
+              }),
+          Space.ym!,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppStrings.developed,
+                style: AppText.h3,
+              ),
+              Space.xf(.3),
+              customUnderLinedText(
+                AppText.h3b,
+                AppStrings.myName,
+              )
+            ],
+          ),
+          Space.yf()
         ],
       ),
     );

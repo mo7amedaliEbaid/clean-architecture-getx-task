@@ -1,12 +1,12 @@
 import 'models.dart';
-class RegisterResponse {
+class AuthResponse {
   bool? success;
   String? message;
   UserModel? data;
 
-  RegisterResponse({this.success, this.message, this.data});
+  AuthResponse({this.success, this.message, this.data});
 
-  RegisterResponse.fromJson(Map<String, dynamic> json) {
+  AuthResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
     data = json['data'] != null ? UserModel.fromJson(json['data']) : null;

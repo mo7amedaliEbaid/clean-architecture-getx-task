@@ -31,7 +31,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  bool isValid = true;
   bool _isConfirmPasswordObscure = true;
   bool _isPasswordObscure = true;
 
@@ -108,6 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 customTextField(
                     labelText: AppStrings.password,
                     controller: _passwordController,
+                    obscureText: _isPasswordObscure,
                     suffix: IconButton(
                       onPressed: () {
                         setState(() {
@@ -156,10 +156,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderRadius: AppDimensions.normalize(4),
                     text: AppStrings.register,
                     textStyle: AppText.h2b!.copyWith(color: Colors.white),
-                    onPressed: () async{
-
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                       await registerController.register(
+                        await registerController.register(
                           name: _fullNameController.text,
                           phone: _phoneController.text,
                           countryCode: selectedCountry.code ?? "+2",
@@ -169,7 +168,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           passwordConfirmation: _confirmPasswordController.text,
                         );
                       }
-
                     }),
                 Space.yf(2.5),
                 Row(
@@ -181,7 +179,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextButton(
                         style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.login);
+                        },
                         child: Text(
                           AppStrings.login,
                           style: AppText.h3b,

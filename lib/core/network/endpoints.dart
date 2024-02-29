@@ -1,7 +1,6 @@
 class EndPoints {
   static const login = 'login';
 
-  static const country = 'country';
 
   static const register = 'user/register';
 
