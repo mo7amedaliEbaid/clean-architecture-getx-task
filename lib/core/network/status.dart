@@ -4,8 +4,8 @@ class ErrorStatus {
   static const int requestDataOk = 0;
 
   //The request is successful
-  static const int success = 200;
-  static const int success1 = 201;
+  static const int success = 201;
+  //static const int success1 = 201;
 
   //The server access FORBIDDEN
   static const int forbidden = 403;

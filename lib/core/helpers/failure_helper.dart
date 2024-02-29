@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import '../network/exceptions.dart';
 import '../network/failures.dart';
 
-
-import 'hive_helper.dart';
+import '../network/network_info.dart';
 
 class FailureHelper {
   static FailureHelper? _instance;
@@ -16,18 +15,18 @@ class FailureHelper {
   FailureHelper._();
 
   static FailureHelper get instance {
-   // instance ??= FailureHelper.();
+    _instance ??= FailureHelper._();
     return _instance!;
   }
 
   Future<Either<Failure, T>> call<T>(
       {Future<T> Function()? method,
-      //  NetworkInfo? networkInfo,
-        Future<T> Function()? methodLocal}) async {
+      NetworkInfo? networkInfo,
+      Future<T> Function()? methodLocal}) async {
     assert((method != null || methodLocal != null),
-    "There is an error you don't call method or methodLocal");
+        "There is an error you don't call method or methodLocal");
 
-  //  if (networkInfo == null || await networkInfo.isConnected) {
+    if (networkInfo == null || await networkInfo.isConnected) {
       try {
         if (method != null) {
           return Right(await method());
@@ -47,17 +46,15 @@ class FailureHelper {
       } on SocketException {
         return const Left(ConnectionFailure());
       } catch (error) {
-        print(error);
         return Left(ExceptionFailure(message: error.toString()));
       }
-   // }
-    /*else {
+    } else {
       if (methodLocal != null) {
         return call(method: methodLocal);
       } else {
         return const Left(ConnectionFailure());
       }
-    }*/
+    }
   }
 
   void handleFailures(Failure failure, BuildContext context) async {
@@ -66,29 +63,23 @@ class FailureHelper {
       dialogType: DialogType.error,
       animType: AnimType.rightSlide,
       headerAnimationLoop: false,
-     // title: AppLocalizations.of(context)?.sorry,
+      title: "Sorry",
       desc: failure.message,
       btnOkColor: Colors.red,
     ).show();
-
     switch (failure.runtimeType) {
       case ExceptionFailure:
-        print('ExceptionFailure');
         break;
       case ConnectionFailure:
-        print('ConnectionFailure');
         break;
       case UnAuthorizedFailure:
         //HiveHelper().logout(context);
         break;
       case UnVerifiedFailure:
-        print('UnVerifiedFailure');
         break;
       case DatabaseFailure:
-        print('DatabaseFailure');
         break;
       default:
-        print(failure.message);
         break;
     }
   }

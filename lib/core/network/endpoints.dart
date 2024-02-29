@@ -3,7 +3,7 @@ class EndPoints {
 
   static const country = 'country';
 
-  static const register = 'register';
+  static const register = 'user/register';
 
   static const statistics = 'statistic/users';
 

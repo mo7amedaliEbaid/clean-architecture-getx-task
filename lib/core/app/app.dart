@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_test_task/bindings/bindings.dart';
 import 'package:mobile_test_task/core/core.dart';
-
+import 'package:mobile_test_task/view/screens/home.dart';
 
 import '../../view/screens.dart';
 
 class MyApp extends StatelessWidget {
-  //final UserController _userController = UserController();
-
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return GetMaterialApp(
       title: 'task',
       debugShowCheckedModeBanner: false,
@@ -22,10 +20,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: AppRoutes.register,
           page: () => const RegisterScreen(),
-          /*binding: BindingsBuilder(() {
-            Get.lazyPut<UserController>(() => _userController);*/
-         // }
-        //  ),
+          binding: RegisterBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.home,
+          page: () => const HomeScreen(),
+         // binding: RegisterBinding(),
         ),
       ],
     );

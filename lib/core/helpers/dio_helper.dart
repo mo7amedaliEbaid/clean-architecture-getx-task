@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-
-import '../interceptors/auth.dart';
-import '../network/base_url.dart';
+import 'package:mobile_test_task/core/core.dart';
 
 
 class DioHelper {

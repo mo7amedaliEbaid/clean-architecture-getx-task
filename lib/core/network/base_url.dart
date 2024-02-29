@@ -1,4 +1,4 @@
 class ServicesURLs {
 
-  static const developmentEnvironment =  "http://dr-salah.alsaif-barriers.com/api/";
+  static const developmentEnvironment =  "http://testapi.alifouad91.com/api/";
 }

@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 
 import '../enums/enums.dart';
 import '../helpers/dio_helper.dart';
-import '../helpers/status.dart';
+import 'status.dart';
 import '../log/log.dart';
 
 import 'exceptions.dart';
@@ -22,10 +22,10 @@ class NetworkCall {
         required Options options,
         Map<String, dynamic>? headers,
         void Function(int, int)? onSendProgress}) async {
-    // if (headers != null) {
+     if (headers != null) {
     options.headers?.addAll(dioHelper.dio.options.headers);
-    // dioHelper.dio.options.headers = headers;
-    // }
+     dioHelper.dio.options.headers = headers;
+    }
     return await dioHelper.dio.request(url,
         onSendProgress: onSendProgress,
         data: data,
@@ -89,7 +89,7 @@ class NetworkCall {
       //   return result;
       // }
 
-      if (result['status'] == true || result['status'] == 200) {
+      if (result['success'] == true /*|| result['status'] == 201*/) {
         return result;
       } else if (result['error'] == "Unauthenticated.") {
         throw UnAuthorizedException();
@@ -106,14 +106,12 @@ class NetworkCall {
         } else {
           errorMessage = result['message'];
         }
-        print(result);
-        print(errorMessage);
-        print('123123');
+
         throw ServerException(message: errorMessage);
       }
     } on DioError catch (dioError) {
       if (dioError.error is SocketException) {
-        throw SocketException('no connect');
+        throw const SocketException('no connect');
       }
 
       final responseBody = dioError.response!.data;

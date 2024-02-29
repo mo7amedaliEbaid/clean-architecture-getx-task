@@ -1,13 +1,11 @@
-// view/register_page.dart
-
 import 'dart:developer';
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_test_task/controllers/controllers.dart';
 import 'package:mobile_test_task/core/core.dart';
-
+import 'package:get/get.dart';
 import 'package:mobile_test_task/view/widgets.dart';
-import 'package:mobile_test_task/view/widgets/custom_texyfield.dart';
 
 import '../../configs/configs.dart';
 
@@ -35,6 +33,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool isValid = true;
   bool _isConfirmPasswordObscure = true;
+  bool _isPasswordObscure = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -48,6 +52,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    App.init(context);
+    RegisterController registerController = Get.find<RegisterController>();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -100,40 +107,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Space.yf(),
                 customTextField(
                     labelText: AppStrings.password,
-                    controller: _phoneController,
-                    validator: injector<Validators>().validatePassword),
-                Space.yf(),
-                Stack(
-                  children: [
-                    customTextField(
-                      labelText: AppStrings.confirmPassword,
-                      obscureText: _isConfirmPasswordObscure,
-                      controller: _confirmPasswordController,
-                      validator: (value) =>
-                          injector<Validators>().validateConfirmPassword(
-                        _passwordController.text,
-                        value,
+                    controller: _passwordController,
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordObscure = !_isPasswordObscure;
+                        });
+                      },
+                      icon: Icon(
+                        _isPasswordObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        size: AppDimensions.normalize(11),
+                        color: Colors.grey,
                       ),
                     ),
-                    Positioned(
-                      right: 0,
-                      bottom: 0,
-                      top: 0,
-                      child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isConfirmPasswordObscure =
-                                !_isConfirmPasswordObscure;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.remove_red_eye,
-                          size: AppDimensions.normalize(11),
-                          color: Colors.grey,
-                        ),
-                      ),
-                    )
-                  ],
+                    validator: injector<Validators>().validatePassword),
+                Space.yf(),
+                customTextField(
+                  labelText: AppStrings.confirmPassword,
+                  obscureText: _isConfirmPasswordObscure,
+                  suffix: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isConfirmPasswordObscure = !_isConfirmPasswordObscure;
+                      });
+                    },
+                    icon: Icon(
+                      _isConfirmPasswordObscure
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      size: AppDimensions.normalize(11),
+                      color: Colors.grey,
+                    ),
+                  ),
+                  controller: _confirmPasswordController,
+                  validator: (value) =>
+                      injector<Validators>().validateConfirmPassword(
+                    _passwordController.text,
+                    value,
+                  ),
                 ),
                 Space.yf(2),
                 customElevatedButton(
@@ -143,9 +156,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderRadius: AppDimensions.normalize(4),
                     text: AppStrings.register,
                     textStyle: AppText.h2b!.copyWith(color: Colors.white),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
-                    })
+                    onPressed: () async{
+
+                      if (_formKey.currentState!.validate()) {
+                       await registerController.register(
+                          name: _fullNameController.text,
+                          phone: _phoneController.text,
+                          countryCode: selectedCountry.code ?? "+2",
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          context: context,
+                          passwordConfirmation: _confirmPasswordController.text,
+                        );
+                      }
+
+                    }),
+                Space.yf(2.5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppStrings.alreadyHaveAccount,
+                      style: AppText.h3,
+                    ),
+                    TextButton(
+                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                        onPressed: () {},
+                        child: Text(
+                          AppStrings.login,
+                          style: AppText.h3b,
+                        ))
+                  ],
+                ),
+                Space.yf(.5)
               ],
             ),
           ),

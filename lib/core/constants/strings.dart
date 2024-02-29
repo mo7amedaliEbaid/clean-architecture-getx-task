@@ -8,4 +8,5 @@ sealed class AppStrings{
   static const String emailAddress="Email Address";
   static const String password="Password";
   static const String confirmPassword="Confirm Password";
+  static const String alreadyHaveAccount="Already have an account?";
 }

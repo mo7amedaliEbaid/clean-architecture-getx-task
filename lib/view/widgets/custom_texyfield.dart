@@ -4,6 +4,7 @@ import 'package:mobile_test_task/configs/configs.dart';
 Widget customTextField(
     {required String labelText,
     Widget? prefix,
+    Widget? suffix,
     bool? obscureText,
     String? Function(String?)? validator,
     void Function(String)? onChanged,
@@ -16,7 +17,7 @@ Widget customTextField(
     obscureText: obscureText ?? false,
     style: AppText.b2b,
     decoration: InputDecoration(
-      errorMaxLines: 3,
+      errorMaxLines: 5,
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: Colors.grey,
@@ -44,10 +45,10 @@ Widget customTextField(
       ),
       alignLabelWithHint: true,
       prefixIcon: prefix,
+      suffixIcon: suffix,
       errorStyle: AppText.b2b!.copyWith(
         color: Colors.red,
       ),
-
     ),
   );
 }
