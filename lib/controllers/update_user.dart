@@ -1,31 +1,29 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:mobile_test_task/configs/app_typography.dart';
+import 'package:mobile_test_task/models/models.dart';
 import '../core/core.dart';
 import '../data/data.dart';
 import 'package:flutter/material.dart';
 
-class RegisterController extends GetxController {
+class UpdateUserController extends GetxController {
   final RxBool isLoading = false.obs;
 
-  Future<void> register({
+  Future<void> updateUser({
     required String name,
     required String phone,
     required String email,
-    required String password,
-    required String passwordConfirmation,
     required String countryCode,
     required BuildContext context,
   }) async {
     isLoading.toggle();
 
     try {
-      final result = await injector<RegisterRepo>().register(
-        password: password,
+      final result = await injector<UpdateUserRepo>().updateUser(
         phone: phone,
         email: email,
         name: name,
-        passwordConfirmation: passwordConfirmation,
         countryCode: countryCode,
       );
 
@@ -36,18 +34,31 @@ class RegisterController extends GetxController {
         },
         (r) async {
           if (r != null) {
-            //  await injector<HiveHelper>().setToken(r.token!);
+            UserModel userModel =
+                injector<HiveHelper>().getUser() ?? UserModel();
 
-            //  await injector<HiveHelper>().setUserModel(r);
+            await injector<HiveHelper>().setUserModel(
+              UserModel(
+                countryCode: r.countryCode,
+                email: r.email,
+                name: r.name,
+                phone: r.phone,
+                token: injector<HiveHelper>().getToken(),
+                tokenExpiry: userModel.tokenExpiry,
+                id: userModel.id,
+              ),
+            );
+
+            Get.offAllNamed(AppRoutes.home);
+
             Get.snackbar(
-              "Successful Registration",
-              "Congratulations",
+              "Success",
+              "Your information is updated successfully",
               backgroundColor: Colors.green,
               colorText: Colors.white,
               snackPosition: SnackPosition.BOTTOM,
               duration: const Duration(seconds: 4),
             );
-            Get.toNamed(AppRoutes.login);
 
             log(r.toString());
           }

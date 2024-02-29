@@ -66,12 +66,12 @@ class HiveHelper {
         : null;
   }
 
- /* UserModel? getUser() {
+  UserModel? getUser() {
     return Hive.box(_HiveKeys.user.name + _name).isNotEmpty
         ? userModelFromJson(Hive.box(_HiveKeys.user.name + _name)
         .get(_HiveKeys.user.name + _name))
         : null;
-  }*/
+  }
 
   Future<void> setUserModel(UserModel userModel) async {
     await Hive.box(_HiveKeys.user.name + _name)

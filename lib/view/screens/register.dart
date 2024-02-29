@@ -149,26 +149,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 Space.yf(2),
-                customElevatedButton(
-                    width: double.infinity,
-                    height: AppDimensions.normalize(20),
-                    color: AppColors.darkPurple,
-                    borderRadius: AppDimensions.normalize(4),
-                    text: AppStrings.register,
-                    textStyle: AppText.h2b!.copyWith(color: Colors.white),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        await registerController.register(
-                          name: _fullNameController.text,
-                          phone: _phoneController.text,
-                          countryCode: selectedCountry.code ?? "+2",
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                          context: context,
-                          passwordConfirmation: _confirmPasswordController.text,
-                        );
-                      }
-                    }),
+                registerController.isLoading.isTrue
+                    ? CircularProgressIndicator(
+                        color: AppColors.darkPurple,
+                      )
+                    : customElevatedButton(
+                        width: double.infinity,
+                        height: AppDimensions.normalize(20),
+                        color: AppColors.darkPurple,
+                        borderRadius: AppDimensions.normalize(4),
+                        text: AppStrings.register,
+                        textStyle: AppText.h2b!.copyWith(color: Colors.white),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await registerController.register(
+                              name: _fullNameController.text,
+                              phone: _phoneController.text,
+                              countryCode: selectedCountry.dialCode ?? "+2",
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              context: context,
+                              passwordConfirmation:
+                                  _confirmPasswordController.text,
+                            );
+                          }
+                        }),
                 Space.yf(2.5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

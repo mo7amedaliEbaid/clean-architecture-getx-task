@@ -34,4 +34,11 @@ Future<void> initSingletons() async {
   injector.registerLazySingleton<LoginRepo>(() => LoginRepo(
       loginDataSource: injector<LoginDataSource>(),
       networkInfo: injector<NetworkInfo>()));
+
+  //update user
+  injector.registerLazySingleton<UpdateUserDataSource>(
+      () => UpdateUserDataSource());
+  injector.registerLazySingleton<UpdateUserRepo>(() => UpdateUserRepo(
+      updateUserDataSource: injector<UpdateUserDataSource>(),
+      networkInfo: injector<NetworkInfo>()));
 }

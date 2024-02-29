@@ -27,12 +27,16 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: AppRoutes.home,
           page: () => const HomeScreen(),
-          // binding: RegisterBinding(),
         ),
         GetPage(
           name: AppRoutes.login,
           page: () => const LoginScreen(),
           binding: LoginBinding(),
+        ),
+        GetPage(
+          name: AppRoutes.changePassword,
+          page: () => const UpdateUserScreen(),
+         binding: UpdateUserBinding(),
         ),
       ],
     );

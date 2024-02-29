@@ -3,31 +3,27 @@ import '../../models/models.dart';
 import '../data.dart';
 import 'package:dartz/dartz.dart';
 
-class RegisterRepo {
+class UpdateUserRepo {
   NetworkInfo networkInfo;
-  RegisterDataSource registerDataSource;
+  UpdateUserDataSource updateUserDataSource;
 
-  RegisterRepo({
+  UpdateUserRepo({
     required this.networkInfo,
-    required this.registerDataSource,
+    required this.updateUserDataSource,
   });
 
-  Future<Either<Failure, UserModel?>> register({
-    required String password,
+  Future<Either<Failure, UpdatedUser?>> updateUser({
     required String phone,
     required String email,
     required String name,
-    required String passwordConfirmation,
     required String countryCode,
   }) {
     return FailureHelper.instance(
       method: () async {
-        return await registerDataSource.register(
-          password: password,
+        return await updateUserDataSource.updateUser(
           phone: phone,
           name: name,
           email: email,
-          passwordConfirmation: passwordConfirmation,
           countryCode: countryCode,
         );
       },

@@ -31,10 +31,14 @@ class LoginController extends GetxController {
             await injector<HiveHelper>().setToken(r.token!);
 
             await injector<HiveHelper>().setUserModel(r);
-            Get.snackbar("Successful Logging In", "Congratulations",
-                backgroundColor: Colors.green,
-                colorText: Colors.white,
-                duration: const Duration(seconds: 4));
+            Get.snackbar(
+              "Successful Logging In",
+              "Congratulations",
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 4),
+            );
             Get.toNamed(AppRoutes.home);
 
             log(r.toString());

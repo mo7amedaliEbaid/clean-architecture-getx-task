@@ -4,8 +4,7 @@ import 'package:mobile_test_task/controllers/controllers.dart';
 import 'package:mobile_test_task/core/core.dart';
 import 'package:get/get.dart';
 import 'package:mobile_test_task/view/widgets.dart';
-//rrr@gmail.com
-//Aa@123456
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

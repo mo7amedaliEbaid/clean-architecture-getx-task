@@ -7,7 +7,10 @@ class LoginRepo {
   NetworkInfo networkInfo;
   LoginDataSource loginDataSource;
 
-  LoginRepo({required this.networkInfo, required this.loginDataSource});
+  LoginRepo({
+    required this.networkInfo,
+    required this.loginDataSource,
+  });
 
   Future<Either<Failure, UserModel?>> login({
     required String password,

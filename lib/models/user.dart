@@ -34,14 +34,14 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['country_code'] = this.countryCode;
-    data['phone'] = this.phone;
-    data['email'] = this.email;
-    data['token'] = this.token;
-    data['token_expiry'] = this.tokenExpiry;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['country_code'] = countryCode;
+    data['phone'] = phone;
+    data['email'] = email;
+    data['token'] = token;
+    data['token_expiry'] = tokenExpiry;
     return data;
   }
 }

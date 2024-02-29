@@ -12,4 +12,10 @@ sealed class AppStrings {
   static const String donNotHaveAccount = "Don't have an account?";
   static const String developed = "Developed by";
   static const String myName = "Mohamed Ali Ebaid";
+  static const String home = "Home Page";
+  static const String updateInfo = "Update Information";
+  static const String logOut = "Logout";
+  static const String changePassword = "Change Password";
+  static const String deleteAccount = "Delete Account";
+  static const String save = "Save";
 }

@@ -47,6 +47,7 @@ dependencies:
   awesome_dialog:
   country_code_picker:
   internet_connection_checker:
+#  flag:
 
 dev_dependencies:
   flutter_test:
