@@ -1,4 +1,5 @@
 # mobile_test_task
+- This structure follows a clean architecture approach, with clear separation of concerns, Using the efficient Getx state management.
 
 ## Directory Structure:
 ```
@@ -52,4 +53,17 @@ lib
 │
 └── main.dart
 
+```
+## Dependencies:
+```
+  dartz:
+  dio:
+  get:
+  hive:
+  hive_flutter:
+  logger:
+  get_it:
+  awesome_dialog:
+  country_code_picker:
+  internet_connection_checker:
 ```
