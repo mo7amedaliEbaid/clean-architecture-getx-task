@@ -1,16 +1,55 @@
 # mobile_test_task
 
-A new Flutter project.
+## Directory Structure:
+```
+lib
+│
+├── bindings
+│   ├── login_bindings.dart
+│   ├── register_bindings.dart
+│   ├── update_user_bindings.dart
+│   └── bindings.dart
+│
+├── configs
+│   ├── app.dart
+│   ├── app_dimensions.dart
+│   ├── app_typography.dart
+│   ├── register.dart
+│   ├── app_typography_ext.dart
+│   ├── configs.dart
+│   ├── space.dart
+│   ├── space_ext.dart
+│   └── ui.dart
+│
+├── controllers
+│   ├── controllers.dart
+│   ├── login.dart
+│   ├── register.dart
+│   └── update_user.dart
+│
+├── core
+│   ├── app
+│   ├── constants
+│   ├── di
+│   ├── enums
+│   ├── helpers
+│   ├── interceptors
+│   ├── log
+│   ├── network
+│   ├── routes
+│   ├── validators
+│   └── core.dart
+│
+├── data
+│   ├── data_sources
+│   └── repos
+│
+├── models
+│
+├── view
+│   ├── screens
+│   └── widgets
+│
+└── main.dart
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
