@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: AppRoutes.changePassword,
           page: () => const UpdateUserScreen(),
-         binding: UpdateUserBinding(),
+          binding: UpdateUserBinding(),
         ),
       ],
     );
