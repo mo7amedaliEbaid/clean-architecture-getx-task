@@ -1,4 +1,4 @@
-# mobile_test_task
+# clean-architecture-getx-example
 - This structure follows a clean architecture approach, with clear separation of concerns, Using the efficient Getx state management.
 
 ## Directory Structure:
